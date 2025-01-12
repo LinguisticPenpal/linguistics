@@ -1,130 +1,160 @@
 import React, { useState } from 'react';
-import { Mail, FileText, School, Book, Home, Beaker, Phone, MapPin } from 'lucide-react';
 
 const styles = {
+  // Layout
+  page: {
+    fontFamily: 'Arial, sans-serif',
+    margin: 0,
+    padding: 0,
+    backgroundColor: '#f5f5f5',
+  },
   header: {
-    background: 'linear-gradient(to right, #1e3a8a, #1e40af)',
+    backgroundColor: '#1a365d',
     color: 'white',
-    padding: '5rem 0',
+    padding: '60px 20px',
     textAlign: 'center',
   },
-  container: {
-    maxWidth: '1024px',
-    margin: '0 auto',
-    padding: '0 1.5rem',
+  profileImage: {
+    width: '150px',
+    height: '150px',
+    borderRadius: '50%',
+    border: '4px solid white',
+    marginBottom: '20px',
   },
+  mainContent: {
+    maxWidth: '900px',
+    margin: '0 auto',
+    padding: '20px',
+  },
+
+  // Navigation
   nav: {
+    backgroundColor: 'white',
+    padding: '15px 0',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
     position: 'sticky',
     top: 0,
-    backgroundColor: 'white',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-    zIndex: 50,
+  },
+  navContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '20px',
+    maxWidth: '900px',
+    margin: '0 auto',
   },
   navButton: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    padding: '0.5rem 1rem',
-    borderRadius: '0.375rem',
+    padding: '8px 16px',
     border: 'none',
+    borderRadius: '4px',
     cursor: 'pointer',
+    fontSize: '16px',
   },
+  activeNavButton: {
+    backgroundColor: '#2563eb',
+    color: 'white',
+  },
+  inactiveNavButton: {
+    backgroundColor: 'transparent',
+    color: '#4a5568',
+  },
+
+  // Sections
   section: {
     backgroundColor: 'white',
-    borderRadius: '0.5rem',
-    padding: '1.5rem',
-    marginBottom: '2rem',
+    borderRadius: '8px',
+    padding: '25px',
+    marginBottom: '20px',
     boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
   },
+  sectionTitle: {
+    color: '#2d3748',
+    fontSize: '24px',
+    marginBottom: '20px',
+    borderBottom: '2px solid #e2e8f0',
+    paddingBottom: '10px',
+  },
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '20px',
+    marginTop: '20px',
+  },
   card: {
-    backgroundColor: '#f9fafb',
-    borderRadius: '0.5rem',
-    padding: '1rem',
-    marginBottom: '1rem',
+    backgroundColor: '#f8fafc',
+    padding: '15px',
+    borderRadius: '6px',
+    border: '1px solid #e2e8f0',
+  },
+
+  // Contact
+  contactSection: {
+    backgroundColor: '#f8fafc',
+    padding: '40px 20px',
+  },
+
+  // Footer
+  footer: {
+    backgroundColor: '#1a365d',
+    color: 'white',
+    padding: '20px',
+    textAlign: 'center',
   },
 };
 
 const Header = () => (
-  <div style={styles.header}>
-    <div style={styles.container}>
-      <img 
-        src="/api/placeholder/150/150"
-        alt="Taehun Lee"
-        style={{
-          width: '150px',
-          height: '150px',
-          borderRadius: '50%',
-          margin: '0 auto 1.5rem',
-          border: '4px solid white',
-        }}
-      />
-      <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
-        Taehun Lee
-      </h1>
-      <p style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>Ph.D. Student</p>
-      <p style={{ fontSize: '1.125rem', opacity: 0.9 }}>Department of Linguistics</p>
-      <p style={{ fontSize: '1.125rem', opacity: 0.9 }}>Indiana University Bloomington</p>
-    </div>
-  </div>
+  <header style={styles.header}>
+    <img
+      src="/api/placeholder/150/150"
+      alt="Taehun Lee"
+      style={styles.profileImage}
+    />
+    <h1>Taehun Lee</h1>
+    <p style={{ fontSize: '1.2em', margin: '10px 0' }}>Ph.D. Student</p>
+    <p>Department of Linguistics</p>
+    <p>Indiana University Bloomington</p>
+  </header>
 );
 
 const Navigation = ({ activeSection, setActiveSection }) => {
-  const items = [
-    { id: 'about', icon: <Home size={20} />, label: 'About' },
-    { id: 'research', icon: <Beaker size={20} />, label: 'Research' },
-    { id: 'publications', icon: <FileText size={20} />, label: 'Publications' },
-    { id: 'teaching', icon: <School size={20} />, label: 'Teaching' }
-  ];
-
+  const sections = ['About', 'Research', 'Publications', 'Teaching'];
+  
   return (
     <nav style={styles.nav}>
-      <div style={styles.container}>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', padding: '1rem 0' }}>
-          {items.map(({ id, icon, label }) => (
-            <button
-              key={id}
-              onClick={() => setActiveSection(id)}
-              style={{
-                ...styles.navButton,
-                backgroundColor: activeSection === id ? '#2563eb' : 'transparent',
-                color: activeSection === id ? 'white' : '#4b5563',
-              }}
-            >
-              {icon}
-              <span>{label}</span>
-            </button>
-          ))}
-        </div>
+      <div style={styles.navContainer}>
+        {sections.map(section => (
+          <button
+            key={section}
+            onClick={() => setActiveSection(section.toLowerCase())}
+            style={{
+              ...styles.navButton,
+              ...(activeSection === section.toLowerCase() ? styles.activeNavButton : styles.inactiveNavButton),
+            }}
+          >
+            {section}
+          </button>
+        ))}
       </div>
     </nav>
   );
 };
 
-const Section = ({ title, icon, children }) => (
+const About = () => (
   <div style={styles.section}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-      {icon}
-      <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{title}</h2>
-    </div>
-    {children}
-  </div>
-);
-
-const AboutSection = () => (
-  <Section title="About" icon={<Home size={24} />}>
-    <p style={{ color: '#4b5563', lineHeight: 1.6 }}>
+    <h2 style={styles.sectionTitle}>About</h2>
+    <p style={{ lineHeight: 1.6 }}>
       I am a Ph.D. student in the Department of Linguistics at Indiana University Bloomington. 
       My research focuses on theoretical linguistics, phonology, and language acquisition. 
       I am particularly interested in cross-linguistic phonological patterns and their implications 
       for linguistic theory. Currently, I am working on my dissertation under the supervision 
       of Professor [Advisor Name].
     </p>
-  </Section>
+  </div>
 );
 
-const ResearchSection = () => (
-  <Section title="Research Interests" icon={<Beaker size={24} />}>
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+const Research = () => (
+  <div style={styles.section}>
+    <h2 style={styles.sectionTitle}>Research Interests</h2>
+    <div style={styles.grid}>
       {[
         'Phonological Theory',
         'Language Acquisition',
@@ -133,18 +163,16 @@ const ResearchSection = () => (
         'Computational Approaches to Language'
       ].map((interest, index) => (
         <div key={index} style={styles.card}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <Book size={20} style={{ color: '#2563eb' }} />
-            <span>{interest}</span>
-          </div>
+          {interest}
         </div>
       ))}
     </div>
-  </Section>
+  </div>
 );
 
-const PublicationsSection = () => (
-  <Section title="Selected Publications" icon={<FileText size={24} />}>
+const Publications = () => (
+  <div style={styles.section}>
+    <h2 style={styles.sectionTitle}>Selected Publications</h2>
     {[
       {
         title: "Prosodic Structure and Phonological Domains",
@@ -162,52 +190,42 @@ const PublicationsSection = () => (
         year: "2023"
       }
     ].map((pub, index) => (
-      <div key={index} style={styles.card}>
-        <h3 style={{ fontSize: '1.125rem', fontWeight: 500, color: '#1e40af', marginBottom: '0.5rem' }}>
-          {pub.title}
-        </h3>
-        <p style={{ color: '#4b5563' }}>{pub.journal} ({pub.year})</p>
+      <div key={index} style={{...styles.card, marginBottom: '10px'}}>
+        <h3 style={{ color: '#2563eb', marginBottom: '5px' }}>{pub.title}</h3>
+        <p style={{ color: '#4a5568' }}>{pub.journal} ({pub.year})</p>
       </div>
     ))}
-  </Section>
+  </div>
 );
 
-const TeachingSection = () => (
-  <Section title="Teaching Experience" icon={<School size={24} />}>
+const Teaching = () => (
+  <div style={styles.section}>
+    <h2 style={styles.sectionTitle}>Teaching Experience</h2>
     {[
       'LING 101: Introduction to Linguistics',
       'LING 201: Phonology',
       'LING 301: Advanced Phonological Theory',
       'LING 401: Language Acquisition Seminar'
     ].map((course, index) => (
-      <div key={index} style={styles.card}>
-        <span style={{ color: '#1f2937' }}>{course}</span>
+      <div key={index} style={{...styles.card, marginBottom: '10px'}}>
+        {course}
       </div>
     ))}
-  </Section>
+  </div>
 );
 
-const ContactInfo = () => (
-  <div style={{ backgroundColor: '#f9fafb', padding: '3rem 0' }}>
-    <div style={styles.container}>
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: '1.5rem' 
-      }}>
+const Contact = () => (
+  <div style={styles.contactSection}>
+    <div style={styles.mainContent}>
+      <div style={styles.grid}>
         {[
-          { icon: <Mail size={24} />, title: "Email", content: "tlee@indiana.edu" },
-          { icon: <MapPin size={24} />, title: "Office", content: "Linguistics Building, Room 401" },
-          { icon: <Phone size={24} />, title: "Phone", content: "+1 (812) 555-0123" }
+          { title: "Email", content: "tlee@indiana.edu" },
+          { title: "Office", content: "Linguistics Building, Room 401" },
+          { title: "Phone", content: "+1 (812) 555-0123" }
         ].map((item, index) => (
-          <div key={index} style={styles.section}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ color: '#2563eb' }}>{item.icon}</div>
-              <div>
-                <h3 style={{ fontWeight: 500, marginBottom: '0.25rem' }}>{item.title}</h3>
-                <p style={{ color: '#4b5563' }}>{item.content}</p>
-              </div>
-            </div>
+          <div key={index} style={styles.card}>
+            <h3 style={{ marginBottom: '8px' }}>{item.title}</h3>
+            <p style={{ color: '#4a5568' }}>{item.content}</p>
           </div>
         ))}
       </div>
@@ -216,44 +234,38 @@ const ContactInfo = () => (
 );
 
 const Footer = () => (
-  <footer style={{ backgroundColor: '#111827', color: 'white', padding: '2rem 0' }}>
-    <div style={styles.container}>
-      <p style={{ textAlign: 'center', opacity: 0.8 }}>
-        © 2025 Taehun Lee - Department of Linguistics, Indiana University Bloomington
-      </p>
-    </div>
+  <footer style={styles.footer}>
+    © 2025 Taehun Lee - Department of Linguistics, Indiana University Bloomington
   </footer>
 );
 
-const ModernAcademicWebsite = () => {
+const AcademicWebsite = () => {
   const [activeSection, setActiveSection] = useState('about');
 
   const renderSection = () => {
     switch (activeSection) {
-      case 'about':
-        return <AboutSection />;
       case 'research':
-        return <ResearchSection />;
+        return <Research />;
       case 'publications':
-        return <PublicationsSection />;
+        return <Publications />;
       case 'teaching':
-        return <TeachingSection />;
+        return <Teaching />;
       default:
-        return <AboutSection />;
+        return <About />;
     }
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f3f4f6' }}>
+    <div style={styles.page}>
       <Header />
       <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
-      <main style={{ ...styles.container, padding: '3rem 1.5rem' }}>
+      <main style={styles.mainContent}>
         {renderSection()}
       </main>
-      <ContactInfo />
+      <Contact />
       <Footer />
     </div>
   );
 };
 
-export default ModernAcademicWebsite;
+export default AcademicWebsite;
