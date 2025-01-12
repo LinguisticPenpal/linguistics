@@ -3,10 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taehun Lee A Ph.d Candidate  </title>
+    <title>Academic Personal Website</title>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        
+        nav {
+            background-color: #343a40;
+            padding: 10px 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        
+        section {
+            margin: 40px 0;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #343a40;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        
+        .publication {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Personal Website!</h1>
-    <p>This is a simple webpage hosted on GitHub Pages.</p>
+    <header>
+        <img src="/api/placeholder/200/200" alt="Profile Photo" class="profile-photo">
+        <h1>Taehun Lee</h1>
+        <p>Ph.D. Student</p>
+        <p>Department of Linguistics, Indiana University Bloomington</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="home">
+            <h2>About</h2>
+            <p>I am a Ph.D. student in the Department of Linguistics at the Indiana University Bloomington. My research focuses on theoretical linguistics, phonology, and language acquisition. I am particularly interested in cross-linguistic phonological patterns and their implications for linguistic theory. Currently, I am working on my dissertation under the supervision of Professor [Advisor Name].</p>
+        </section>
+
+        <section id="research">
+            <h2>Research Interests</h2>
+            <ul>
+                <li>Phonological Theory</li>
+                <li>Language Acquisition</li>
+                <li>Syntax-Phonology Interface</li>
+                <li>Experimental Linguistics</li>
+                <li>Computational Approaches to Language</li>
+            </ul>
+        </section>
+
+        <section id="publications">
+            <h2>Selected Publications</h2>
+            <div class="publication">
+                <p>"Prosodic Structure and Phonological Domains" - Language 2024</p>
+                <p>"Cross-linguistic Patterns in Syllable Structure" - Linguistic Inquiry 2023</p>
+                <p>"The Role of Phonological Features in Language Acquisition" - Journal of Child Language 2023</p>
+            </div>
+        </section>
+
+        <section id="teaching">
+            <h2>Teaching</h2>
+            <ul>
+                <li>LING 101: Introduction to Linguistics</li>
+                <li>LING 201: Phonology</li>
+                <li>LING 301: Advanced Phonological Theory</li>
+                <li>LING 401: Language Acquisition Seminar</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p>jsmith@indiana.edu</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Office Location</h3>
+                    <p>Linguistics Building, Room 401</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Office Phone</h3>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Taehun Lee - Department of Linguistics, University of Example</p>
+    </footer>
 </body>
 </html>
