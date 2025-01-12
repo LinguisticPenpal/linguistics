@@ -49,6 +49,8 @@
                         class="px-4 py-2 rounded-md hover:bg-gray-100">Publications</button>
                 <button onclick="showSection('teaching')" 
                         class="px-4 py-2 rounded-md hover:bg-gray-100">Teaching</button>
+                <button onclick="showSection('blog')" 
+                        class="px-4 py-2 rounded-md hover:bg-gray-100">Blog</button>
             </div>
         </div>
     </nav>
@@ -111,6 +113,90 @@
                 </div>
             </div>
         </section>
+
+        <section id="blog" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Blog Posts</h2>
+                    <button onclick="toggleNewPostForm()" 
+                            class="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700">
+                        Ask Question
+                    </button>
+                </div>
+
+                <!-- 새 글 작성 폼 -->
+                <div id="newPostForm" class="hidden mb-8 bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Ask a Question</h3>
+                    <form onsubmit="handleNewPost(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" required
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Question Title</label>
+                            <input type="text" required
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Question Content</label>
+                            <textarea required rows="4"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"></textarea>
+                        </div>
+                        <div class="flex justify-end gap-4">
+                            <button type="button" onclick="toggleNewPostForm()"
+                                    class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100">
+                                Cancel
+                            </button>
+                            <button type="submit"
+                                    class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- 블로그 포스트 목록 -->
+                <div class="space-y-6">
+                    <article class="border-b border-gray-200 pb-6">
+                        <h3 class="text-xl font-semibold mb-2">Question about Phonological Theory</h3>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span>Posted by John Doe</span>
+                            <span class="mx-2">•</span>
+                            <span>2024-01-10</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            I have a question about the relationship between phonological theory and syntax. 
+                            How do these two areas interact in your research?
+                        </p>
+                        <div class="bg-gray-50 p-4 rounded-lg mt-4">
+                            <p class="text-sm font-medium text-gray-700 mb-2">Response from Taehun:</p>
+                            <p class="text-gray-600">
+                                Thank you for your question! The interaction between phonology and syntax is indeed fascinating...
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="border-b border-gray-200 pb-6">
+                        <h3 class="text-xl font-semibold mb-2">Language Acquisition Research Methods</h3>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span>Posted by Jane Smith</span>
+                            <span class="mx-2">•</span>
+                            <span>2024-01-08</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Could you elaborate on the research methods you use in your language acquisition studies?
+                        </p>
+                        <div class="bg-gray-50 p-4 rounded-lg mt-4">
+                            <p class="text-sm font-medium text-gray-700 mb-2">Response from Taehun:</p>
+                            <p class="text-gray-600">
+                                In my research, I primarily use experimental methods combined with corpus analysis...
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div class="bg-gray-50 py-12">
@@ -139,6 +225,18 @@
     </footer>
 
     <script>
+        function toggleNewPostForm() {
+            const form = document.getElementById('newPostForm');
+            form.classList.toggle('hidden');
+        }
+
+        function handleNewPost(event) {
+            event.preventDefault();
+            // 실제 구현에서는 서버로 데이터를 전송하고 데이터베이스에 저장해야 합니다
+            alert('In a real implementation, this would save the question to a database.');
+            toggleNewPostForm();
+        }
+
         function showSection(sectionId) {
             // 모든 섹션 숨기기
             document.querySelectorAll('.section-content').forEach(section => {
