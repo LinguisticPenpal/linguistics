@@ -1,271 +1,166 @@
-import React, { useState } from 'react';
-
-const styles = {
-  // Layout
-  page: {
-    fontFamily: 'Arial, sans-serif',
-    margin: 0,
-    padding: 0,
-    backgroundColor: '#f5f5f5',
-  },
-  header: {
-    backgroundColor: '#1a365d',
-    color: 'white',
-    padding: '60px 20px',
-    textAlign: 'center',
-  },
-  profileImage: {
-    width: '150px',
-    height: '150px',
-    borderRadius: '50%',
-    border: '4px solid white',
-    marginBottom: '20px',
-  },
-  mainContent: {
-    maxWidth: '900px',
-    margin: '0 auto',
-    padding: '20px',
-  },
-
-  // Navigation
-  nav: {
-    backgroundColor: 'white',
-    padding: '15px 0',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-    position: 'sticky',
-    top: 0,
-  },
-  navContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '20px',
-    maxWidth: '900px',
-    margin: '0 auto',
-  },
-  navButton: {
-    padding: '8px 16px',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '16px',
-  },
-  activeNavButton: {
-    backgroundColor: '#2563eb',
-    color: 'white',
-  },
-  inactiveNavButton: {
-    backgroundColor: 'transparent',
-    color: '#4a5568',
-  },
-
-  // Sections
-  section: {
-    backgroundColor: 'white',
-    borderRadius: '8px',
-    padding: '25px',
-    marginBottom: '20px',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-  },
-  sectionTitle: {
-    color: '#2d3748',
-    fontSize: '24px',
-    marginBottom: '20px',
-    borderBottom: '2px solid #e2e8f0',
-    paddingBottom: '10px',
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-    gap: '20px',
-    marginTop: '20px',
-  },
-  card: {
-    backgroundColor: '#f8fafc',
-    padding: '15px',
-    borderRadius: '6px',
-    border: '1px solid #e2e8f0',
-  },
-
-  // Contact
-  contactSection: {
-    backgroundColor: '#f8fafc',
-    padding: '40px 20px',
-  },
-
-  // Footer
-  footer: {
-    backgroundColor: '#1a365d',
-    color: 'white',
-    padding: '20px',
-    textAlign: 'center',
-  },
-};
-
-const Header = () => (
-  <header style={styles.header}>
-    <img
-      src="/api/placeholder/150/150"
-      alt="Taehun Lee"
-      style={styles.profileImage}
-    />
-    <h1>Taehun Lee</h1>
-    <p style={{ fontSize: '1.2em', margin: '10px 0' }}>Ph.D. Student</p>
-    <p>Department of Linguistics</p>
-    <p>Indiana University Bloomington</p>
-  </header>
-);
-
-const Navigation = ({ activeSection, setActiveSection }) => {
-  const sections = ['About', 'Research', 'Publications', 'Teaching'];
-  
-  return (
-    <nav style={styles.nav}>
-      <div style={styles.navContainer}>
-        {sections.map(section => (
-          <button
-            key={section}
-            onClick={() => setActiveSection(section.toLowerCase())}
-            style={{
-              ...styles.navButton,
-              ...(activeSection === section.toLowerCase() ? styles.activeNavButton : styles.inactiveNavButton),
-            }}
-          >
-            {section}
-          </button>
-        ))}
-      </div>
-    </nav>
-  );
-};
-
-const About = () => (
-  <div style={styles.section}>
-    <h2 style={styles.sectionTitle}>About</h2>
-    <p style={{ lineHeight: 1.6 }}>
-      I am a Ph.D. student in the Department of Linguistics at Indiana University Bloomington. 
-      My research focuses on theoretical linguistics, phonology, and language acquisition. 
-      I am particularly interested in cross-linguistic phonological patterns and their implications 
-      for linguistic theory. Currently, I am working on my dissertation under the supervision 
-      of Professor [Advisor Name].
-    </p>
-  </div>
-);
-
-const Research = () => (
-  <div style={styles.section}>
-    <h2 style={styles.sectionTitle}>Research Interests</h2>
-    <div style={styles.grid}>
-      {[
-        'Phonological Theory',
-        'Language Acquisition',
-        'Syntax-Phonology Interface',
-        'Experimental Linguistics',
-        'Computational Approaches to Language'
-      ].map((interest, index) => (
-        <div key={index} style={styles.card}>
-          {interest}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taehun Lee - Academic Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind 설정 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-gradient-to-r from-primary-900 to-primary-700 text-white py-20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <img src="/api/placeholder/150/150" alt="Taehun Lee" 
+                 class="w-36 h-36 rounded-full border-4 border-white mx-auto mb-6 shadow-xl">
+            <h1 class="text-4xl font-bold mb-2">Taehun Lee</h1>
+            <p class="text-xl mb-1">Ph.D. Student</p>
+            <p class="text-lg opacity-90">Department of Linguistics</p>
+            <p class="text-lg opacity-90">Indiana University Bloomington</p>
         </div>
-      ))}
+    </header>
+
+    <nav class="sticky top-0 bg-white shadow-md z-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex justify-center space-x-4 py-4">
+                <button onclick="showSection('about')" 
+                        class="px-4 py-2 rounded-md hover:bg-gray-100 active-nav">About</button>
+                <button onclick="showSection('research')" 
+                        class="px-4 py-2 rounded-md hover:bg-gray-100">Research</button>
+                <button onclick="showSection('publications')" 
+                        class="px-4 py-2 rounded-md hover:bg-gray-100">Publications</button>
+                <button onclick="showSection('teaching')" 
+                        class="px-4 py-2 rounded-md hover:bg-gray-100">Teaching</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        <section id="about" class="section-content">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">About</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    I am a Ph.D. student in the Department of Linguistics at Indiana University Bloomington. 
+                    My research focuses on theoretical linguistics, phonology, and language acquisition. 
+                    I am particularly interested in cross-linguistic phonological patterns and their implications 
+                    for linguistic theory. Currently, I am working on my dissertation under the supervision 
+                    of Professor [Advisor Name].
+                </p>
+            </div>
+        </section>
+
+        <section id="research" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Research Interests</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">Phonological Theory</div>
+                    <div class="bg-gray-50 p-4 rounded-lg">Language Acquisition</div>
+                    <div class="bg-gray-50 p-4 rounded-lg">Syntax-Phonology Interface</div>
+                    <div class="bg-gray-50 p-4 rounded-lg">Experimental Linguistics</div>
+                    <div class="bg-gray-50 p-4 rounded-lg">Computational Approaches to Language</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Selected Publications</h2>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-medium text-primary-800">Prosodic Structure and Phonological Domains</h3>
+                        <p class="text-gray-600">Language (2024)</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-medium text-primary-800">Cross-linguistic Patterns in Syllable Structure</h3>
+                        <p class="text-gray-600">Linguistic Inquiry (2023)</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-medium text-primary-800">The Role of Phonological Features in Language Acquisition</h3>
+                        <p class="text-gray-600">Journal of Child Language (2023)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="teaching" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Teaching Experience</h2>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">LING 101: Introduction to Linguistics</div>
+                    <div class="bg-gray-50 p-4 rounded-lg">LING 201: Phonology</div>
+                    <div class="bg-gray-50 p-4 rounded-lg">LING 301: Advanced Phonological Theory</div>
+                    <div class="bg-gray-50 p-4 rounded-lg">LING 401: Language Acquisition Seminar</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="bg-gray-50 py-12">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-medium mb-2">Email</h3>
+                    <p class="text-gray-600">tlee@indiana.edu</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-medium mb-2">Office</h3>
+                    <p class="text-gray-600">Linguistics Building, Room 401</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-medium mb-2">Phone</h3>
+                    <p class="text-gray-600">+1 (812) 555-0123</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-);
 
-const Publications = () => (
-  <div style={styles.section}>
-    <h2 style={styles.sectionTitle}>Selected Publications</h2>
-    {[
-      {
-        title: "Prosodic Structure and Phonological Domains",
-        journal: "Language",
-        year: "2024"
-      },
-      {
-        title: "Cross-linguistic Patterns in Syllable Structure",
-        journal: "Linguistic Inquiry",
-        year: "2023"
-      },
-      {
-        title: "The Role of Phonological Features in Language Acquisition",
-        journal: "Journal of Child Language",
-        year: "2023"
-      }
-    ].map((pub, index) => (
-      <div key={index} style={{...styles.card, marginBottom: '10px'}}>
-        <h3 style={{ color: '#2563eb', marginBottom: '5px' }}>{pub.title}</h3>
-        <p style={{ color: '#4a5568' }}>{pub.journal} ({pub.year})</p>
-      </div>
-    ))}
-  </div>
-);
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="opacity-80">© 2025 Taehun Lee - Department of Linguistics, Indiana University Bloomington</p>
+        </div>
+    </footer>
 
-const Teaching = () => (
-  <div style={styles.section}>
-    <h2 style={styles.sectionTitle}>Teaching Experience</h2>
-    {[
-      'LING 101: Introduction to Linguistics',
-      'LING 201: Phonology',
-      'LING 301: Advanced Phonological Theory',
-      'LING 401: Language Acquisition Seminar'
-    ].map((course, index) => (
-      <div key={index} style={{...styles.card, marginBottom: '10px'}}>
-        {course}
-      </div>
-    ))}
-  </div>
-);
+    <script>
+        function showSection(sectionId) {
+            // 모든 섹션 숨기기
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.add('hidden');
+            });
+            // 선택된 섹션 보이기
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // 네비게이션 버튼 스타일 업데이트
+            document.querySelectorAll('nav button').forEach(button => {
+                button.classList.remove('bg-primary-600', 'text-white');
+                button.classList.add('hover:bg-gray-100');
+            });
+            // 클릭된 버튼 스타일 업데이트
+            event.target.classList.add('bg-primary-600', 'text-white');
+            event.target.classList.remove('hover:bg-gray-100');
+        }
 
-const Contact = () => (
-  <div style={styles.contactSection}>
-    <div style={styles.mainContent}>
-      <div style={styles.grid}>
-        {[
-          { title: "Email", content: "tlee@indiana.edu" },
-          { title: "Office", content: "Linguistics Building, Room 401" },
-          { title: "Phone", content: "+1 (812) 555-0123" }
-        ].map((item, index) => (
-          <div key={index} style={styles.card}>
-            <h3 style={{ marginBottom: '8px' }}>{item.title}</h3>
-            <p style={{ color: '#4a5568' }}>{item.content}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
-const Footer = () => (
-  <footer style={styles.footer}>
-    © 2025 Taehun Lee - Department of Linguistics, Indiana University Bloomington
-  </footer>
-);
-
-const AcademicWebsite = () => {
-  const [activeSection, setActiveSection] = useState('about');
-
-  const renderSection = () => {
-    switch (activeSection) {
-      case 'research':
-        return <Research />;
-      case 'publications':
-        return <Publications />;
-      case 'teaching':
-        return <Teaching />;
-      default:
-        return <About />;
-    }
-  };
-
-  return (
-    <div style={styles.page}>
-      <Header />
-      <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
-      <main style={styles.mainContent}>
-        {renderSection()}
-      </main>
-      <Contact />
-      <Footer />
-    </div>
-  );
-};
-
-export default AcademicWebsite;
+        // 페이지 로드 시 About 섹션 활성화
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('nav button').classList.add('bg-primary-600', 'text-white');
+        });
+    </script>
+</body>
+</html>
