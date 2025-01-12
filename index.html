@@ -1,177 +1,226 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Personal Website</title>
-    <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background-color: #f8f9fa;
-        }
-        
-        .profile-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-        }
-        
-        nav {
-            background-color: #343a40;
-            padding: 10px 0;
-        }
-        
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        
-        nav ul li {
-            margin: 0 15px;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        
-        section {
-            margin: 40px 0;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        h2 {
-            color: #343a40;
-            border-bottom: 2px solid #dee2e6;
-            padding-bottom: 10px;
-            margin-top: 30px;
-        }
-        
-        .publication {
-            margin-bottom: 20px;
-            padding-left: 20px;
-        }
-        
-        .contact-info {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        
-        .contact-item {
-            flex: 1;
-            min-width: 250px;
-            margin: 10px;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #f8f9fa;
-            margin-top: 40px;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <img src="/api/placeholder/200/200" alt="Profile Photo" class="profile-photo">
-        <h1>Taehun Lee</h1>
-        <p>Ph.D. Student</p>
-        <p>Department of Linguistics, Indiana University Bloomington</p>
-    </header>
+import React, { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Mail, FileText, School, Book, Home, Beaker, Phone, MapPin } from 'lucide-react';
 
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#teaching">Teaching</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        <section id="home">
-            <h2>About</h2>
-            <p>I am a Ph.D. student in the Department of Linguistics at the Indiana University Bloomington. My research focuses on theoretical linguistics, phonology, and language acquisition. I am particularly interested in cross-linguistic phonological patterns and their implications for linguistic theory. Currently, I am working on my dissertation under the supervision of Professor [Advisor Name].</p>
-        </section>
-
-        <section id="research">
-            <h2>Research Interests</h2>
-            <ul>
-                <li>Phonological Theory</li>
-                <li>Language Acquisition</li>
-                <li>Syntax-Phonology Interface</li>
-                <li>Experimental Linguistics</li>
-                <li>Computational Approaches to Language</li>
-            </ul>
-        </section>
-
-        <section id="publications">
-            <h2>Selected Publications</h2>
-            <div class="publication">
-                <p>"Prosodic Structure and Phonological Domains" - Language 2024</p>
-                <p>"Cross-linguistic Patterns in Syllable Structure" - Linguistic Inquiry 2023</p>
-                <p>"The Role of Phonological Features in Language Acquisition" - Journal of Child Language 2023</p>
-            </div>
-        </section>
-
-        <section id="teaching">
-            <h2>Teaching</h2>
-            <ul>
-                <li>LING 101: Introduction to Linguistics</li>
-                <li>LING 201: Phonology</li>
-                <li>LING 301: Advanced Phonological Theory</li>
-                <li>LING 401: Language Acquisition Seminar</li>
-            </ul>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <h3>Email</h3>
-                    <p>jsmith@indiana.edu</p>
-                </div>
-                <div class="contact-item">
-                    <h3>Office Location</h3>
-                    <p>Linguistics Building, Room 401</p>
-                </div>
-                <div class="contact-item">
-                    <h3>Office Phone</h3>
-                    <p>+1 (555) 123-4567</p>
-                </div>
-            </div>
-        </section>
+const Header = () => (
+  <div className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+    <div className="container mx-auto px-6 text-center">
+      <img 
+        src="/api/placeholder/150/150"
+        alt="Taehun Lee"
+        className="rounded-full mx-auto mb-6 border-4 border-white shadow-xl"
+      />
+      <h1 className="text-4xl font-bold mb-2">Taehun Lee</h1>
+      <p className="text-xl mb-1">Ph.D. Student</p>
+      <p className="text-lg opacity-90">Department of Linguistics</p>
+      <p className="text-lg opacity-90">Indiana University Bloomington</p>
     </div>
+  </div>
+);
 
-    <footer>
-        <p>© 2025 Taehun Lee - Department of Linguistics, University of Example</p>
-    </footer>
-</body>
-</html>
+const Navigation = () => {
+  const [activeSection, setActiveSection] = useState('about');
+  
+  return (
+    <nav className="sticky top-0 bg-white shadow-md z-50">
+      <div className="container mx-auto px-6">
+        <div className="flex justify-center space-x-4 py-4">
+          {[
+            { id: 'about', icon: <Home className="w-4 h-4" />, label: 'About' },
+            { id: 'research', icon: <Beaker className="w-4 h-4" />, label: 'Research' },
+            { id: 'publications', icon: <FileText className="w-4 h-4" />, label: 'Publications' },
+            { id: 'teaching', icon: <School className="w-4 h-4" />, label: 'Teaching' }
+          ].map(({ id, icon, label }) => (
+            <Button
+              key={id}
+              variant={activeSection === id ? "default" : "ghost"}
+              className="flex items-center gap-2"
+              onClick={() => setActiveSection(id)}
+            >
+              {icon}
+              {label}
+            </Button>
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+const AboutSection = () => (
+  <Card className="mb-8">
+    <CardHeader>
+      <CardTitle className="flex items-center gap-2">
+        <Home className="w-5 h-5" />
+        About
+      </CardTitle>
+    </CardHeader>
+    <CardContent>
+      <p className="text-gray-600 leading-relaxed">
+        I am a Ph.D. student in the Department of Linguistics at Indiana University Bloomington. 
+        My research focuses on theoretical linguistics, phonology, and language acquisition. 
+        I am particularly interested in cross-linguistic phonological patterns and their implications 
+        for linguistic theory. Currently, I am working on my dissertation under the supervision 
+        of Professor [Advisor Name].
+      </p>
+    </CardContent>
+  </Card>
+);
+
+const ResearchSection = () => (
+  <Card className="mb-8">
+    <CardHeader>
+      <CardTitle className="flex items-center gap-2">
+        <Beaker className="w-5 h-5" />
+        Research Interests
+      </CardTitle>
+    </CardHeader>
+    <CardContent>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          'Phonological Theory',
+          'Language Acquisition',
+          'Syntax-Phonology Interface',
+          'Experimental Linguistics',
+          'Computational Approaches to Language'
+        ].map((interest, index) => (
+          <div key={index} className="flex items-center p-4 bg-gray-50 rounded-lg">
+            <Book className="w-5 h-5 text-blue-600 mr-3" />
+            <span>{interest}</span>
+          </div>
+        ))}
+      </div>
+    </CardContent>
+  </Card>
+);
+
+const PublicationsSection = () => (
+  <Card className="mb-8">
+    <CardHeader>
+      <CardTitle className="flex items-center gap-2">
+        <FileText className="w-5 h-5" />
+        Selected Publications
+      </CardTitle>
+    </CardHeader>
+    <CardContent>
+      <div className="space-y-6">
+        {[
+          {
+            title: "Prosodic Structure and Phonological Domains",
+            journal: "Language",
+            year: "2024"
+          },
+          {
+            title: "Cross-linguistic Patterns in Syllable Structure",
+            journal: "Linguistic Inquiry",
+            year: "2023"
+          },
+          {
+            title: "The Role of Phonological Features in Language Acquisition",
+            journal: "Journal of Child Language",
+            year: "2023"
+          }
+        ].map((pub, index) => (
+          <div key={index} className="p-4 bg-gray-50 rounded-lg">
+            <h3 className="font-medium text-lg text-blue-800">{pub.title}</h3>
+            <p className="text-gray-600">{pub.journal} ({pub.year})</p>
+          </div>
+        ))}
+      </div>
+    </CardContent>
+  </Card>
+);
+
+const TeachingSection = () => (
+  <Card className="mb-8">
+    <CardHeader>
+      <CardTitle className="flex items-center gap-2">
+        <School className="w-5 h-5" />
+        Teaching Experience
+      </CardTitle>
+    </CardHeader>
+    <CardContent>
+      <div className="grid gap-4">
+        {[
+          'LING 101: Introduction to Linguistics',
+          'LING 201: Phonology',
+          'LING 301: Advanced Phonological Theory',
+          'LING 401: Language Acquisition Seminar'
+        ].map((course, index) => (
+          <div key={index} className="p-4 bg-gray-50 rounded-lg">
+            <span className="text-gray-800">{course}</span>
+          </div>
+        ))}
+      </div>
+    </CardContent>
+  </Card>
+);
+
+const ContactInfo = () => (
+  <div className="bg-gray-50 py-12">
+    <div className="container mx-auto px-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card>
+          <CardContent className="flex items-center gap-4 p-6">
+            <Mail className="w-6 h-6 text-blue-600" />
+            <div>
+              <h3 className="font-medium">Email</h3>
+              <p className="text-gray-600">tlee@indiana.edu</p>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="flex items-center gap-4 p-6">
+            <MapPin className="w-6 h-6 text-blue-600" />
+            <div>
+              <h3 className="font-medium">Office</h3>
+              <p className="text-gray-600">Linguistics Building, Room 401</p>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="flex items-center gap-4 p-6">
+            <Phone className="w-6 h-6 text-blue-600" />
+            <div>
+              <h3 className="font-medium">Phone</h3>
+              <p className="text-gray-600">+1 (812) 555-0123</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </div>
+);
+
+const Footer = () => (
+  <footer className="bg-gray-900 text-white py-8">
+    <div className="container mx-auto px-6 text-center">
+      <p className="opacity-80">© 2025 Taehun Lee - Department of Linguistics, Indiana University Bloomington</p>
+    </div>
+  </footer>
+);
+
+const ModernAcademicWebsite = () => {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Header />
+      <Navigation />
+      <main className="container mx-auto px-6 py-12">
+        <AboutSection />
+        <ResearchSection />
+        <PublicationsSection />
+        <TeachingSection />
+      </main>
+      <ContactInfo />
+      <Footer />
+    </div>
+  );
+};
+
+export default ModernAcademicWebsite;
